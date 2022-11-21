@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "courses": "First Year Professional",
+    "subjects": ["jazz", "interpretation", "singing"],
+    "roles": ["student"],
+    "reports": [""],
+    "isActive": true,
+    "person": {
+      "id": 0,
+      "name": "James",
+      "surname1": "Smith",
+      "surname2": "",
+      "id_number": "44431928D",
+      "relevant_information": "Hates peanuts",
+      "contact_details": [
+        {
+          "id": 0,
+          "student_id": 0,
+          "home_address": "Smith",
+          "post_code": "",
+          "phone_number1": "Hates peanuts",
+          "phone_number2": "Hates peanuts",
+          "primary_email": "Hates peanuts",
+          "secondary_email": "Hates peanuts",
+          "isRelative": true,
+          "contact_information": "Hates peanuts too"
+        }
+      ]
+    }
+  }
+]
