@@ -1,5 +1,5 @@
 import { Classroom, NewClassroomEntry } from "../types";
-import classroomExample from "../types/classroomExample.json";
+import classroomExample from "../interfaces/classroomExample.json";
 
 const classrooms: Classroom[] = classroomExample as Classroom[];
 
