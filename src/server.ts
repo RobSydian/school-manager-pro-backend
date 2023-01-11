@@ -1,19 +1,16 @@
-// import { User } from "./src/types/user";
+import "dotenv/config";
 import express from "express";
 import { router } from "./routes/index";
+import cors from "cors";
+import db from "./config/mongo";
+
+const PORT = process.env.PORT;
 
 const app = express();
-app.use(express.json());
-
-const PORT = 5000;
+app.use(cors());
 
 // const users: User[] = [{ name: "userOne" }, { name: "userTwo" }];
 
-app.get("/api", (_req, res) => {
-  console.log("Someone pinged here!");
-  res.send("pong");
-});
-console.log(router);
-app.use("/api/", router);
-
+app.use(router);
+db().then(() => console.log("Connection ready"));
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
