@@ -1,22 +1,39 @@
-import { Classroom, NewClassroomEntry } from "../types";
-import classroomExample from "../interfaces/classroomExample.json";
+// File in charge of business logic for classroom
 
-const classrooms: Classroom[] = classroomExample as Classroom[];
+import { Classroom } from "../interfaces/classroom.interface";
+import ClassroomModel from "../models/classroom.model";
 
-export const getClassrooms = (): Classroom[] => classrooms;
-
-export const findById = (id: number): Classroom | undefined => {
-  const entry = classrooms.find((result) => result.id === id);
-  return entry;
+const insertClassroomDB = async (classroom: Classroom) => {
+  const responseInsert = await ClassroomModel.create(classroom);
+  return responseInsert;
 };
 
-export const addClassroom = (
-  newClassroomEntry: NewClassroomEntry
-): Classroom => {
-  const newClassroom = {
-    id: classrooms.length + 1,
-    ...newClassroomEntry,
-  };
-  classrooms.push(newClassroom);
-  return newClassroom;
+const getClassroomsDB = async () => {
+  const response = await ClassroomModel.find({});
+  return response;
+};
+
+const getClassroomDB = async (id: string) => {
+  const response = await ClassroomModel.findOne({ _id: id });
+  return response;
+};
+
+const updateClassroomDB = async (id: string, data: Classroom) => {
+  const response = await ClassroomModel.findOneAndUpdate({ _id: id }, data, {
+    new: true,
+  });
+  return response;
+};
+
+const deleteClassroomDB = async (id: string) => {
+  const response = await ClassroomModel.deleteOne({ _id: id });
+  return response;
+};
+
+export {
+  insertClassroomDB,
+  getClassroomsDB,
+  getClassroomDB,
+  updateClassroomDB,
+  deleteClassroomDB,
 };

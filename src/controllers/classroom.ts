@@ -1,40 +1,55 @@
 import { Request, Response } from "express";
+import {
+  insertClassroomDB,
+  getClassroomsDB,
+  getClassroomDB,
+  updateClassroomDB,
+  deleteClassroomDB,
+} from "../services/classroomService";
 import { handleHttp } from "../utils/error.handle";
 
-const getClassroom = (req: Request, res: Response) => {
+const getClassroom = async ({ params }: Request, res: Response) => {
   try {
-    console.log("BOOO");
-    res.send(req);
+    const { id } = params;
+    const response = await getClassroomDB(id);
+    const data = response ? response : "NOT_FOUND";
+    res.send(data);
   } catch (e) {
     handleHttp(res, "ERROR_GET_CLASSROOM");
   }
 };
-const getClassrooms = (req: Request, res: Response) => {
+const getClassrooms = async (req: Request, res: Response) => {
   try {
-    console.log("BAAA");
+    const response = await getClassroomsDB();
+    res.send(response);
 
     res.send(req);
   } catch (e) {
     handleHttp(res, "ERROR_GET_CLASSROOMS");
   }
 };
-const updateClassroom = (req: Request, res: Response) => {
+const updateClassroom = async ({ params, body }: Request, res: Response) => {
   try {
-    res.send(req);
+    const { id } = params;
+    const response = await updateClassroomDB(id, body);
+    res.send(response);
   } catch (e) {
     handleHttp(res, "ERROR_UPDATE_CLASSROOM");
   }
 };
-const postClassroom = ({ body }: Request, res: Response) => {
+const postClassroom = async ({ body }: Request, res: Response) => {
   try {
-    res.send(body);
+    const responseClassroom = await insertClassroomDB(body);
+    res.send(responseClassroom);
   } catch (e) {
-    handleHttp(res, "ERROR_POST_CLASSROOM");
+    handleHttp(res, "ERROR_POST_CLASSROOM", e);
   }
 };
-const deleteClassroom = (req: Request, res: Response) => {
+const deleteClassroom = async ({ params }: Request, res: Response) => {
   try {
-    res.send(req);
+    const { id } = params;
+    const response = await deleteClassroomDB(id);
+    res.send(response);
   } catch (e) {
     handleHttp(res, "ERROR_DELETE_CLASSROOM");
   }
