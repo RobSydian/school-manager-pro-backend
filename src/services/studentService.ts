@@ -1,8 +1,8 @@
-// import { Student } from "../types";
-// import userExample from "../types/userExample.json";
+import PersonModel from "../models/person.model";
 
-// const users: Array<Student> = userExample as Array<Student>;
+const getStudentsDB = async () => {
+  const response = await PersonModel.find({});
+  return response;
+};
 
-// export const getStudents = () => users;
-
-export const addStudent = () => null;
+export { getStudentsDB };
