@@ -1,13 +1,9 @@
 import { Request, Response } from "express";
-import { JwtPayload } from "jsonwebtoken";
+import { RequestExt } from "../interfaces/request-ext";
 
 import { handleHttp } from "../utils/error.handle";
 
-interface RequestEx extends Request {
-  user?: string | JwtPayload;
-}
-
-const getPersons = async (req: RequestEx, res: Response) => {
+const getPersons = async (req: RequestExt, res: Response) => {
   try {
     res.send({
       data: "THIS IS ONLY VISIBLE WITH USERS WITH VALID JWT",
