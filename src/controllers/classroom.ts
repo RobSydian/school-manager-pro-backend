@@ -22,8 +22,6 @@ const getClassrooms = async (req: Request, res: Response) => {
   try {
     const response = await getClassroomsDB();
     res.send(response);
-
-    res.send(req);
   } catch (e) {
     handleHttp(res, "ERROR_GET_CLASSROOMS");
   }
